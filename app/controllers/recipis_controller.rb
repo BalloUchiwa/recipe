@@ -26,9 +26,11 @@ class RecipisController < ApplicationController
 
   # POST /recipis or /recipis.json
   def create
+    @ingredients = params[:recipi].delete(:recipi_ingredients)
     @recipi = Recipi.new(recipi_params)
     respond_to do |format|
       if @recipi.save
+        @recipi.create_ingredients(@ingredients) if @ingredients.present?
         format.html { redirect_to recipi_url(@recipi), notice: "Recipi was successfully created." }
         format.json { render :show, status: :created, location: @recipi }
       else
@@ -40,10 +42,10 @@ class RecipisController < ApplicationController
 
   # PATCH/PUT /recipis/1 or /recipis/1.json
   def update
-    
+    @ingredients = params[:recipi].delete(:recipi_ingredients)
     respond_to do |format|
       if @recipi.update(recipi_params)
-        @recipi.save
+        @recipi.create_ingredients(@ingredients) if @ingredients.present?
         format.html { redirect_to recipi_url(@recipi), notice: "Recipi was successfully updated." }
         format.json { render :show, status: :ok, location: @recipi }
       else
@@ -71,6 +73,6 @@ class RecipisController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def recipi_params
-      params.require(:recipi).permit(:title, :cook_time, :prep_time, :ratings, :cuisine, :category, :author, :image)
+      params.require(:recipi).permit(:title, :recipi_ingredients, :cook_time, :prep_time, :ratings, :cuisine, :category, :author, :image)
     end
 end

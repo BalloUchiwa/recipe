@@ -39,4 +39,8 @@
     <%= recipi.image %>
   </p>
 
+  <p>
+    <strong>Ingredients</strong> <%= recipi.ingredients.map(&:name).join(" ")%>
+  </p>
+
 </div>

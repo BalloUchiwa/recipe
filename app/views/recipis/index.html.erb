@@ -4,9 +4,8 @@
 
 <div id="recipis">
   <% @recipis.each do |recipi| %>
-    <%= render recipi %>
     <p>
-      <%= link_to "Show this recipi", recipi %>
+      <%= link_to recipi.title, recipi %>
     </p>
   <% end %>
 </div>
