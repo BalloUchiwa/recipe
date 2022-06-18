@@ -19,10 +19,14 @@ class RecipisController < ApplicationController
   def edit
   end
 
+  def search
+    @recipis = Recipi.where("title LIKE ?", "%#{params[:q]}")
+
+  end
+
   # POST /recipis or /recipis.json
   def create
     @recipi = Recipi.new(recipi_params)
-
     respond_to do |format|
       if @recipi.save
         format.html { redirect_to recipi_url(@recipi), notice: "Recipi was successfully created." }
@@ -36,8 +40,10 @@ class RecipisController < ApplicationController
 
   # PATCH/PUT /recipis/1 or /recipis/1.json
   def update
+    
     respond_to do |format|
       if @recipi.update(recipi_params)
+        @recipi.save
         format.html { redirect_to recipi_url(@recipi), notice: "Recipi was successfully updated." }
         format.json { render :show, status: :ok, location: @recipi }
       else
@@ -65,6 +71,6 @@ class RecipisController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def recipi_params
-      params.require(:recipi).permit(:title, :cook_time, :prep_time, :ingredients, :ratings, :cuisine, :category, :author, :image)
+      params.require(:recipi).permit(:title, :cook_time, :prep_time, :ratings, :cuisine, :category, :author, :image)
     end
 end
