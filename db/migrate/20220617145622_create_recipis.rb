@@ -4,7 +4,6 @@ class CreateRecipis < ActiveRecord::Migration[7.0]
       t.string :title 
       t.integer :cook_time
       t.integer :prep_time
-      t.text :ingredients, array: true, default: []
       t.float :ratings
       t.string :cuisine
       t.string :category

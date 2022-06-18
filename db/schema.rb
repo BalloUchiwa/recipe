@@ -18,7 +18,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_17_145622) do
     t.string "title"
     t.integer "cook_time"
     t.integer "prep_time"
-    t.text "ingredients", default: [], array: true
     t.float "ratings"
     t.string "cuisine"
     t.string "category"
