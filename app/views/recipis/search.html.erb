@@ -1,0 +1,9 @@
+<%= render "search_form" %>
+
+<% if @recipis.present? %>
+  <% @recipis.each do |recipi| %>
+    <%= link_to recipi.title, recipi %>
+  <% end %>
+<% else %>
+  <h1>No  results found for this search</h1>
+<% end %>

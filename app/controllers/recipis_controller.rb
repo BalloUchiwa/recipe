@@ -20,8 +20,8 @@ class RecipisController < ApplicationController
   end
 
   def search
-    @recipis = Recipi.where("title LIKE ?", "%#{params[:q]}")
-
+    @recipis = Recipi.joins(:ingredients).where("name LIKE ?", "%#{params[:query].downcase}%")
+    
   end
 
   # POST /recipis or /recipis.json
