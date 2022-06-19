@@ -1,5 +1,5 @@
 class Recipi < ApplicationRecord
-  has_many :ingredients
+  has_many :ingredients, dependent: :destroy
 
   validates :title, uniqueness: true, presence: true
 
