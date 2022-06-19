@@ -1,9 +1,15 @@
 <%= render "search_form" %>
-
-<% if @recipis.present? %>
-  <% @recipis.each do |recipi| %>
-    <%= link_to recipi.title, recipi %>
+<div class="row">
+  <% if @recipis.present? %>
+    <% @recipis.each do |recipi| %>
+      <div class="col-md-3">
+        <% if recipi.image.present? %>
+          <%= image_tag(recipi.image, class: "img-fluid")%>
+        <% end %>
+        <%= link_to recipi.title, recipi %>
+      </div>
+    <% end %>
+  <% else %>
+    <h1>No  results found for this search</h1>
   <% end %>
-<% else %>
-  <h1>No  results found for this search</h1>
-<% end %>
+</div>

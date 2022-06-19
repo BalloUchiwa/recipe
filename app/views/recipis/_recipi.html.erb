@@ -1,4 +1,11 @@
 <div id="<%= dom_id recipi %>">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <% if recipi.image.present? %>
+        <%= image_tag(recipi.image, class: "img-fluid")%>
+      <% end %>
+    </div>
+  </div>
   <p>
     <strong>Title:</strong>
     <%= recipi.title %>
@@ -34,10 +41,7 @@
     <%= recipi.author %>
   </p>
 
-  <p>
-    <strong>Image:</strong>
-    <%= recipi.image %>
-  </p>
+
 
   <p>
     <strong>Ingredients</strong> <%= recipi.ingredients.map(&:name).join(" ")%>
